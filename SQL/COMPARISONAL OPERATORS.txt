@@ -1,0 +1,58 @@
+SQL> SELECT * FROM CUSTOMERS;
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY > 5000;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY = 2000;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
++----+---------+------+-----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY != 2000;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  2 | RAJESH  |   23 | GUJARAT   |   1500 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY <> 2000;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  2 | RAJESH  |   23 | GUJARAT   |   1500 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY >= 6500;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+4 rows in set (0.00 sec)

@@ -1,0 +1,87 @@
+mysql> USE acme;
+Database changed
+
+mysql> CREATE TABLE STD (ST_ID INT, ST_NAME VARCHAR(10), ST_PHONENUM VARCHAR(10));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> DESC STD;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ST_ID       | int         | YES  |     | NULL    |       |
+| ST_NAME     | varchar(10) | YES  |     | NULL    |       |
+| ST_PHONENUM | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE STD ADD (ST_ADRESS VARCHAR(10));
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STD;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ST_ID       | int         | YES  |     | NULL    |       |
+| ST_NAME     | varchar(10) | YES  |     | NULL    |       |
+| ST_PHONENUM | varchar(10) | YES  |     | NULL    |       |
+| ST_ADRESS   | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DESC STD;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ST_ID       | int         | YES  |     | NULL    |       |
+| ST_PHONENUM | varchar(10) | YES  |     | NULL    |       |
+| ST_ADRESS   | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE STD RENAME TO STDINFO;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESC STDINFO;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ST_ID       | int         | YES  |     | NULL    |       |
+| ST_PHONENUM | varchar(10) | YES  |     | NULL    |       |
+| ST_ADRESS   | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.08 sec)
+mysql> DESC STD;
+ERROR 1146 (42S02): Table 'acme.std' doesn't exist
+mysql> DESC STDINFO;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| ST_ID       | int         | YES  |     | NULL    |       |
+| ST_PHONENUM | varchar(10) | YES  |     | NULL    |       |
+| ST_ADRESS   | varchar(10) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE STDINFO RENAME COLUMN ST_PHONENUM TO ST_CONTACTNUM;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STDINFO;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| ST_ID         | int         | YES  |     | NULL    |       |
+| ST_CONTACTNUM | varchar(10) | YES  |     | NULL    |       |
+| ST_ADRESS     | varchar(10) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> TRUNCATE TABLE STDINFO;
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> DROP TABLE STDINFO;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> DESC STDINFO;
+ERROR 1146 (42S02): Table 'acme.stdinfo' doesn't exist
+mysql>

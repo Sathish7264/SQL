@@ -1,0 +1,219 @@
+SQL UNISQL Unions Clause 
+
+The SQL UNION clause/operator is used to combine the results of two or more SELECT statements 
+without returning any duplicate rows. 
+
+To use UNION, each SELECT must have the same number of columns selected, the same number of column 
+expressions, the same data type, and have them in the same order, but they do not have to be the same length. 
+
+Syntax: 
+The basic syntax of UNION is as follows: 
+
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+UNION 
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+
+Now, let us join these two tables in our SELECT statement as follows: 
+
+mysql>  SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> LEFT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID
+    -> UNION
+    -> SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> RIGHT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
++------+---------+--------+------------+
+| ID   | NAME    | AMOUNT | DATE       |
++------+---------+--------+------------+
+|    1 | RAMESH  |   NULL | NULL       |
+|    2 | RAJESH  |   1560 | 2009-10-08 |
+|    3 | PRIYA   |   3000 | 2009-10-08 |
+|    3 | PRIYA   |   1500 | 2009-10-08 |
+|    4 | PAVANI  |   2060 | 2009-11-20 |
+|    5 | SATHISH |   NULL | NULL       |
+|    6 | AKHIL   |   NULL | NULL       |
+|    7 | YOGA    |   NULL | NULL       |
+|    8 | SURYA   |   NULL | NULL       |
++------+---------+--------+------------+
+9 rows in set (0.01 sec)
+
+-------------------------------------------------------------------------
+
+The UNION ALL Clause: 
+
+The UNION ALL operator is used to combine the results of two SELECT statements including duplicate rows. 
+The same rules that apply to UNION apply to the UNION ALL operator. 
+
+Syntax: 
+The basic syntax of UNION ALL is as follows: 
+
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+UNION ALL 
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+
+Now, let us join these two tables in our SELECT statement as follows: 
+
+
+mysql> SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> LEFT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID
+    -> UNION ALL
+    -> SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> RIGHT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
++------+---------+--------+------------+
+| ID   | NAME    | AMOUNT | DATE       |
++------+---------+--------+------------+
+|    1 | RAMESH  |   NULL | NULL       |
+|    2 | RAJESH  |   1560 | 2009-10-08 |
+|    3 | PRIYA   |   3000 | 2009-10-08 |
+|    3 | PRIYA   |   1500 | 2009-10-08 |
+|    4 | PAVANI  |   2060 | 2009-11-20 |
+|    5 | SATHISH |   NULL | NULL       |
+|    6 | AKHIL   |   NULL | NULL       |
+|    7 | YOGA    |   NULL | NULL       |
+|    8 | SURYA   |   NULL | NULL       |
+|    3 | PRIYA   |   1500 | 2009-10-08 |
+|    3 | PRIYA   |   3000 | 2009-10-08 |
+|    2 | RAJESH  |   1560 | 2009-10-08 |
+|    4 | PAVANI  |   2060 | 2009-11-20 |
++------+---------+--------+------------+
+13 rows in set (0.00 sec)
+-------------------------------------------------------------------------------------------------------------
+
+SQL INTERSECT Clause: is used to combine two SELECT statements, but returns rows only from the first 
+SELECT statement that are identical to a row in the second SELECT statement. 
+
+INTERSECT Clause 
+The SQL INTERSECT clause/operator is used to combine two SELECT statements, but returns rows only from the 
+first SELECT statement that are identical to a row in the second SELECT statement. This means INTERSECT 
+returns only common rows returned by the two SELECT statements. 
+
+Just as with the UNION operator, the same rules apply when using the INTERSECT operator. MySQL does not 
+support INTERSECT operator 
+
+Syntax: 
+The basic syntax of INTERSECT is as follows: 
+
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+INTERSECT 
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition]
+
+Now, let us join these two tables in our SELECT statement as follows: 
+
+mysql> SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> RIGHT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
++------+--------+--------+------------+
+| ID   | NAME   | AMOUNT | DATE       |
++------+--------+--------+------------+
+|    3 | PRIYA  |   1500 | 2009-10-08 |
+|    3 | PRIYA  |   3000 | 2009-10-08 |
+|    2 | RAJESH |   1560 | 2009-10-08 |
+|    4 | PAVANI |   2060 | 2009-11-20 |
++------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+ SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> LEFT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
++----+---------+--------+------------+
+| ID | NAME    | AMOUNT | DATE       |
++----+---------+--------+------------+
+|  1 | RAMESH  |   NULL | NULL       |
+|  2 | RAJESH  |   1560 | 2009-10-08 |
+|  3 | PRIYA   |   3000 | 2009-10-08 |
+|  3 | PRIYA   |   1500 | 2009-10-08 |
+|  4 | PAVANI  |   2060 | 2009-11-20 |
+|  5 | SATHISH |   NULL | NULL       |
+|  6 | AKHIL   |   NULL | NULL       |
+|  7 | YOGA    |   NULL | NULL       |
+|  8 | SURYA   |   NULL | NULL       |
++----+---------+--------+------------+
+9 rows in set (0.00 sec)
+--------------------------------------------------------------------------------------
+
+EXCEPT Clause 
+
+SQL EXCEPT Clause : combines two SELECT statements and returns rows from the first SELECT statement 
+that are not returned by the second SELECT statement.
+
+The SQL EXCEPT clause/operator is used to combine two SELECT statements and returns rows from the first 
+SELECT statement that are not returned by the second SELECT statement. This means EXCEPT returns only 
+rows, which are not available in second SELECT statement.
+ 
+Just as with the UNION operator, the same rules apply when using the EXCEPT operator. MySQL does not 
+support EXCEPT operator. 
+
+Syntax: 
+The basic syntax of EXCEPT is as follows: 
+
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition] 
+EXCEPT 
+SELECT column1 [, column2 ] 
+FROM table1 [, table2 ] 
+[WHERE condition] 
+
+SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> LEFT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID
+    -> ;
++----+---------+--------+------------+
+| ID | NAME    | AMOUNT | DATE       |
++----+---------+--------+------------+
+|  1 | RAMESH  |   NULL | NULL       |
+|  2 | RAJESH  |   1560 | 2009-10-08 |
+|  3 | PRIYA   |   3000 | 2009-10-08 |
+|  3 | PRIYA   |   1500 | 2009-10-08 |
+|  4 | PAVANI  |   2060 | 2009-11-20 |
+|  5 | SATHISH |   NULL | NULL       |
+|  6 | AKHIL   |   NULL | NULL       |
+|  7 | YOGA    |   NULL | NULL       |
+|  8 | SURYA   |   NULL | NULL       |
++----+---------+--------+------------+
+9 rows in set (0.00 sec)
+
+ SELECT ID, NAME, AMOUNT, DATE
+    -> FROM CUSTOMERS
+    -> RIGHT JOIN ORDERS
+    -> ON CUSTOMERS.ID = ORDERS.CUSTOMER_ID;
++------+--------+--------+------------+
+| ID   | NAME   | AMOUNT | DATE       |
++------+--------+--------+------------+
+|    3 | PRIYA  |   1500 | 2009-10-08 |
+|    3 | PRIYA  |   3000 | 2009-10-08 |
+|    2 | RAJESH |   1560 | 2009-10-08 |
+|    4 | PAVANI |   2060 | 2009-11-20 |
++------+--------+--------+------------+
+4 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+

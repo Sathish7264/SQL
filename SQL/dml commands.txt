@@ -1,0 +1,89 @@
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| acme               |
+| class              |
+| db                 |
+| demo               |
+| fullstackdb        |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sathyadb           |
+| sp                 |
+| sri                |
+| students           |
+| surya              |
++--------------------+
+13 rows in set (0.02 sec)
+
+mysql> USE acme;
+Database changed
+mysql> create table stdn(st_id int,st_name varchar(10), st_phnum varchar(10));
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> desc stdn;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| st_id    | int         | YES  |     | NULL    |       |
+| st_name  | varchar(10) | YES  |     | NULL    |       |
+| st_phnum | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.81 sec)
+
+mysql> insert into stdn values (101,'sonu','98546');
+Query OK, 1 row affected (3.48 sec)
+
+mysql> insert into stdn values (102,'shiva','12456');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into stdn values (108,'sathish','123456');
+Query OK, 1 row affected (2.44 sec)
+
+mysql> select * from stdn;
++-------+---------+----------+
+| st_id | st_name | st_phnum |
++-------+---------+----------+
+|   101 | sonu    | 98546    |
+|   102 | shiva   | 12456    |
+|   108 | sathish | 123456   |
++-------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select st_name from stdn;
++---------+
+| st_name |
++---------+
+| sonu    |
+| shiva   |
+| sathish |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> update stdn set st_name='chary' where st_id=102;
+Query OK, 1 row affected (3.70 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from stdn;
++-------+---------+----------+
+| st_id | st_name | st_phnum |
++-------+---------+----------+
+|   101 | sonu    | 98546    |
+|   102 | chary   | 12456    |
+|   108 | sathish | 123456   |
++-------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> delete from stdn where st_id=101;
+Query OK, 1 row affected (2.62 sec)
+
+mysql> select * from stdn;
++-------+---------+----------+
+| st_id | st_name | st_phnum |
++-------+---------+----------+
+|   102 | chary   | 12456    |
+|   108 | sathish | 123456   |
++-------+---------+----------+
+2 rows in set (0.00 sec)

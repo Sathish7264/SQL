@@ -1,0 +1,135 @@
+
+mysql> use class;
+Database changed
+mysql> CREATE TABLE CUSTOMERS(
+    -> ID INT PRIMARY KEY,CUSNAME VARCHAR(20),AGE INT,ADDRESS VARCHAR(20),SALARY int);
+
+
+mysql> DESC CUSTOMERS;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| ID      | int         | NO   | PRI | NULL    |       |
+| CUSNAME | varchar(20) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| ADDRESS | varchar(20) | YES  |     | NULL    |       |
+| SALARY  | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> USE CLASS;
+Database changed
+mysql> SELECT * FROM CUSTOMERS;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  2 | RAJESH  |   23 | GUJARAT   |   1500 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SQL> SELECT * FROM CUSTOMERS WHERE AGE >= 25 AND SALARY >= 6500;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SQL> SELECT * FROM CUSTOMERS WHERE AGE >= 25 AND SALARY >= 6500' at line 1
+mysql> SELECT * FROM CUSTOMERS WHERE AGE>=25;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
++----+---------+------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE>=25 OR SALARY >=6500;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE SALARY >=6500;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE IS NOT NULL;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  2 | RAJESH  |   23 | GUJARAT   |   1500 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
+|  8 | SURYA   |   23 | HYDERABAD |  10000 |
++----+---------+------+-----------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE BETWEEN 25 AND 27;
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
++----+---------+------+-----------+--------+
+1 row in set (0.00 sec)
+
+mysql> SELECT AGE FROM CUSTOMERS WHERE EXISTS (SELECT AGE FROM CUSTOMERS WHERE SALARY>6500);
++------+
+| AGE  |
++------+
+|   32 |
+|   23 |
+|   25 |
+|   24 |
+|   24 |
+|   30 |
+|   24 |
+|   23 |
++------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE > ALL (SELECT AGE FROM CUSTOMERS WHERE SALARY >6500);
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
++----+---------+------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMERS WHERE AGE > ANY (SELECT AGE FROM CUSTOMERS WHERE SALARY > 6500);
++----+---------+------+-----------+--------+
+| ID | CUSNAME | AGE  | ADDRESS   | SALARY |
++----+---------+------+-----------+--------+
+|  1 | RAMESH  |   32 | DELHI     |   2000 |
+|  3 | PRIYA   |   25 | HYDERABAD |   2000 |
+|  4 | PAVANI  |   24 | MUMBAI    |   6500 |
+|  5 | SATHISH |   24 | GOA       |   7000 |
+|  6 | AKHIL   |   30 | HYDERABAD |   4500 |
+|  7 | YOGA    |   24 | DELHI     |  10000 |
++----+---------+------+-----------+--------+
+6 rows in set (0.01 sec)
+
+mysql> SELECT *

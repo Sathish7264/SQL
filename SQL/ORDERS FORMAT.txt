@@ -1,0 +1,4 @@
+INSERT INTO `class`.`orders` (`ID`, `DATE`, `CUSTOMERID`, `AMOUNT`) VALUES ('100', '2009-10-08', '3', '1500');
+INSERT INTO `class`.`orders` (`ID`, `DATE`, `CUSTOMERID`, `AMOUNT`) VALUES ('101', '2009-10-08', '3', '3000');
+INSERT INTO `class`.`orders` (`ID`, `DATE`, `CUSTOMERID`, `AMOUNT`) VALUES ('102', '2009-10-08', '2', '1560');
+INSERT INTO `class`.`orders` (`ID`, `DATE`, `CUSTOMERID`, `AMOUNT`) VALUES ('103', '2009-11-20', '4', '2060');
